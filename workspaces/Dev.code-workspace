@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"claudeCode.initialPermissionMode": "plan",
+		"claudeCode.environmentVariables": [],
+		"chatgpt.openOnStartup": true
+	}
+}

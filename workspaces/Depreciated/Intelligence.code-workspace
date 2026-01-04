@@ -1,0 +1,131 @@
+{
+  "folders": [
+    {
+      "name": "🏠 Intelligence (Root)",
+      "path": "Intelligence"
+    },
+    {
+      "name": "🌐 Web UI-UX",
+      "path": "Intelligence/modules/web-ui-ux"
+    },
+    {
+      "name": "⚙️ Admin UI-UX",
+      "path": "Intelligence/modules/admin-ui-ux"
+    },
+    {
+      "name": "🤖 AI Validator",
+      "path": "Intelligence/modules/ai-validator"
+    },
+    {
+      "name": "🔄 AI Worker",
+      "path": "Intelligence/modules/ai-worker"
+    },
+    {
+      "name": "🧠 AI Model",
+      "path": "Intelligence/modules/ai-model"
+    },
+    {
+      "name": "🔐 Identity",
+      "path": "Intelligence/modules/identity"
+    },
+    {
+      "name": "✅ Verification",
+      "path": "Intelligence/modules/verification"
+    },
+    {
+      "name": "📅 Timeline",
+      "path": "Intelligence/modules/timeline"
+    },
+    {
+      "name": "🔧 Shared Core",
+      "path": "Intelligence/modules/shared-core"
+    },
+    {
+      "name": "📋 Contracts",
+      "path": "Intelligence/modules/contracts"
+    },
+    {
+      "name": "📦 Packs",
+      "path": "Intelligence/packs"
+    },
+    {
+      "name": "🏗️ Infrastructure",
+      "path": "Intelligence/infra"
+    },
+    {
+      "name": "💧 Outfall",
+      "path": "Intelligence/apps/outfall"
+    },
+    {
+      "name": "📥 Data ETL",
+      "path": "Intelligence/data/etl"
+    },
+    {
+      "name": "📖 Data Read",
+      "path": "Intelligence/data/read"
+    },
+    {
+      "path": "Intelligence/DevOps"
+    }
+  ],
+  "settings": {
+    "files.exclude": {
+      "**/__pycache__": true,
+      "**/.pytest_cache": true,
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/htmlcov": true,
+      "**/.venv": true,
+      "**/venv": true,
+      "**/.git": false
+    },
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/venv": true,
+      "**/__pycache__": true,
+      "**/htmlcov": true
+    },
+    "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+    "python.analysis.extraPaths": [
+      "./Intelligence/modules/shared-core/src",
+      "./Intelligence/modules/ai-model/src",
+      "./Intelligence/packs/src"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "[python]": {
+      "editor.formatOnSave": true,
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+      },
+      "editor.defaultFormatter": "charliermarsh.ruff"
+    },
+    "[typescript]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[json]": {
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
+      "editor.formatOnSave": true
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "ms-python.python",
+      "ms-python.vscode-pylance",
+      "charliermarsh.ruff",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+      "redhat.vscode-yaml",
+      "ms-azuretools.vscode-docker"
+    ]
+  }
+}
+

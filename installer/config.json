@@ -1,0 +1,240 @@
+{
+  "$schema": "./schema/config.schema.json",
+  "version": "1.0.0",
+  "description": "AI Platform Configuration Installer Settings",
+
+  "defaults": {
+    "mode": "copy",
+    "backup": true,
+    "overwrite": "prompt",
+    "secretSource": "env"
+  },
+
+  "platforms": {
+    "claude-code": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.claude",
+        "linux": "~/.claude",
+        "darwin": "~/.claude"
+      },
+      "files": [
+        { "source": "templates/claude/settings.json", "target": "settings.json" },
+        { "source": "templates/claude/settings.local.json", "target": "settings.local.json", "optional": true }
+      ]
+    },
+
+    "claude-desktop": {
+      "enabled": true,
+      "paths": {
+        "windows": "%APPDATA%\\Claude",
+        "linux": null,
+        "darwin": "~/Library/Application Support/Claude"
+      },
+      "files": [
+        { "source": "templates/claude-desktop/claude_desktop_config.json", "target": "claude_desktop_config.json" }
+      ]
+    },
+
+    "cursor": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.cursor",
+        "linux": "~/.cursor",
+        "darwin": "~/.cursor"
+      },
+      "files": [
+        { "source": "templates/cursor/mcp.json", "target": "mcp.json" }
+      ]
+    },
+
+    "windsurf": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.codeium\\windsurf",
+        "linux": "~/.codeium/windsurf",
+        "darwin": "~/.codeium/windsurf"
+      },
+      "files": [
+        { "source": "templates/windsurf/mcp_config.json", "target": "mcp_config.json" }
+      ]
+    },
+
+    "vscode": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.vscode",
+        "linux": "~/.vscode",
+        "darwin": "~/.vscode"
+      },
+      "files": [
+        { "source": "templates/vscode/mcp.json", "target": "mcp.json" }
+      ]
+    },
+
+    "codex": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.codex",
+        "linux": "~/.codex",
+        "darwin": "~/.codex"
+      },
+      "files": [
+        { "source": "templates/codex/config.toml", "target": "config.toml" }
+      ]
+    },
+
+    "gemini": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.gemini",
+        "linux": "~/.gemini",
+        "darwin": "~/.gemini"
+      },
+      "files": [
+        { "source": "templates/gemini/settings.json", "target": "settings.json" },
+        { "source": "templates/gemini/instructions.md", "target": "instructions.md", "optional": true }
+      ]
+    },
+
+    "cline": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.cline",
+        "linux": "~/.cline",
+        "darwin": "~/.cline"
+      },
+      "files": [
+        { "source": "templates/cline/cline_mcp_settings.json", "target": "cline_mcp_settings.json" }
+      ]
+    },
+
+    "continue": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.continue",
+        "linux": "~/.continue",
+        "darwin": "~/.continue"
+      },
+      "files": [
+        { "source": "templates/continue/config.json", "target": "config.json" }
+      ]
+    },
+
+    "kiro": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.kiro",
+        "linux": "~/.kiro",
+        "darwin": "~/.kiro"
+      },
+      "files": [
+        { "source": "templates/kiro/mcp.json", "target": "mcp.json" }
+      ]
+    },
+
+    "lmstudio": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.lmstudio",
+        "linux": "~/.lmstudio",
+        "darwin": "~/.lmstudio"
+      },
+      "files": [
+        { "source": "templates/lmstudio/mcp.json", "target": "mcp.json" }
+      ]
+    },
+
+    "zed": {
+      "enabled": true,
+      "paths": {
+        "windows": "%USERPROFILE%\\.config\\zed",
+        "linux": "~/.config/zed",
+        "darwin": "~/.config/zed"
+      },
+      "files": [
+        { "source": "templates/zed/settings.json", "target": "settings.json" }
+      ]
+    }
+  },
+
+  "secrets": {
+    "required": [
+      "GITHUB_PERSONAL_ACCESS_TOKEN"
+    ],
+    "optional": [
+      "FIGMA_API_KEY",
+      "OBSIDIAN_API_KEY",
+      "FIRECRAWL_API_KEY",
+      "PERPLEXITY_API_KEY"
+    ],
+    "sources": {
+      "env": {
+        "description": "Read from environment variables",
+        "priority": 1
+      },
+      "infisical": {
+        "description": "Fetch from Infisical CLI",
+        "priority": 2,
+        "command": "infisical secrets get {{KEY}} --path=/ --plain --silent"
+      },
+      "docker-mcp": {
+        "description": "Docker MCP secret store",
+        "priority": 3,
+        "command": "docker mcp secret get {{KEY}}"
+      },
+      "prompt": {
+        "description": "Prompt user interactively",
+        "priority": 99
+      }
+    }
+  },
+
+  "mcpServers": {
+    "docker-gateway": {
+      "description": "Docker MCP Gateway (15 servers)",
+      "command": "docker",
+      "args": ["mcp", "gateway", "run"],
+      "requiresDocker": true
+    },
+    "context7": {
+      "description": "Documentation lookup",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "kapture": {
+      "description": "Browser DevTools",
+      "command": "npx",
+      "args": ["-y", "kapture-mcp", "bridge"]
+    },
+    "playwright": {
+      "description": "Web automation",
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "github": {
+      "description": "GitHub repository access",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": ["GITHUB_PERSONAL_ACCESS_TOKEN"]
+    },
+    "obsidian": {
+      "description": "Obsidian vault access",
+      "command": "npx",
+      "args": ["-y", "obsidian-mcp"],
+      "env": ["OBSIDIAN_API_KEY"]
+    },
+    "firecrawl": {
+      "description": "Web scraping",
+      "command": "npx",
+      "args": ["-y", "firecrawl-mcp"],
+      "env": ["FIRECRAWL_API_KEY"]
+    }
+  },
+
+  "hooks": {
+    "preInstall": "hooks/pre-install",
+    "postInstall": "hooks/post-install",
+    "onError": "hooks/rollback"
+  }
+}

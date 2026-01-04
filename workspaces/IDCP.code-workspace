@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../repos/IDCP"
+		},
+		{
+			"path": "../../_templates"
+		},
+		{
+			"path": "../../_dotfiles"
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"chatgpt.openOnStartup": true
+	}
+}

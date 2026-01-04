@@ -1,0 +1,62 @@
+{
+  "mcpServers": {
+    "MCP_DOCKER": {
+      "command": "docker",
+      "args": ["mcp", "gateway", "run"],
+      "env": {
+        "LOCALAPPDATA": "{{ENV:LOCALAPPDATA}}",
+        "ProgramData": "{{ENV:ProgramData}}",
+        "ProgramFiles": "{{ENV:ProgramFiles}}"
+      }
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "kapture": {
+      "command": "npx",
+      "args": ["-y", "kapture-mcp", "bridge"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "auth0": {
+      "command": "npx",
+      "args": ["-y", "@auth0/auth0-mcp-server", "run"],
+      "env": {
+        "DEBUG": "auth0-mcp"
+      }
+    },
+    "figma": {
+      "command": "npx",
+      "args": ["-y", "figma-mcp"],
+      "env": {
+        "FIGMA_API_KEY": "{{SECRET:FIGMA_API_KEY}}"
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{{SECRET:GITHUB_PERSONAL_ACCESS_TOKEN}}"
+      }
+    },
+    "obsidian": {
+      "command": "npx",
+      "args": ["-y", "obsidian-mcp"],
+      "env": {
+        "OBSIDIAN_API_KEY": "{{SECRET:OBSIDIAN_API_KEY}}",
+        "OBSIDIAN_BASE_URL": "{{CONFIG:obsidianBaseUrl:http://127.0.0.1:27123}}"
+      }
+    },
+    "ms-learn-docs": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://learn.microsoft.com/api/mcp"]
+    },
+    "hugging-face": {
+      "command": "npx",
+      "args": ["-y", "@llmindset/mcp-hfspace"]
+    }
+  }
+}

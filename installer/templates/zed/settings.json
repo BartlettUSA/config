@@ -1,0 +1,29 @@
+{
+  "assistant": {
+    "version": "2",
+    "provider": "anthropic"
+  },
+  "context_servers": {
+    "MCP_DOCKER": {
+      "command": {
+        "path": "docker",
+        "args": ["mcp", "gateway", "run"]
+      }
+    },
+    "context7": {
+      "command": {
+        "path": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    },
+    "github": {
+      "command": {
+        "path": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "{{SECRET:GITHUB_PERSONAL_ACCESS_TOKEN}}"
+        }
+      }
+    }
+  }
+}

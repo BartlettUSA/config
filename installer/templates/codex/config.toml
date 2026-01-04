@@ -1,0 +1,21 @@
+# Codex Configuration
+# Note: Codex runs in cloud - only HTTP endpoints work
+
+[mcp]
+# Docker gateway not available in cloud environment
+# Use mcp-remote for HTTP endpoints
+
+[[mcp.servers]]
+name = "context7"
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.context7.com/mcp"]
+
+[[mcp.servers]]
+name = "ms-learn-docs"
+command = "npx"
+args = ["-y", "mcp-remote", "https://learn.microsoft.com/api/mcp"]
+
+[permissions]
+# Codex uses sandbox - limited permissions apply
+allow_network = true
+allow_filesystem = false
