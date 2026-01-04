@@ -1,0 +1,25 @@
+---
+description: Context7 MCP integration for documentation freshness
+globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go"]
+alwaysApply: false
+---
+
+# Context7 Usage Rules
+
+When working with external libraries or APIs:
+
+1. **Always verify documentation freshness** - If uncertain about current API usage, append: `use context7`
+
+2. **Library-specific queries** - Be specific: "Next.js App Router routing; use context7" not just "routing"
+
+3. **Token management** - Default 10k tokens; increase for complex APIs
+
+4. **Priority order**:
+   - Official framework MCPs first (if available)
+   - Context7 for broad library coverage
+   - Web search for very recent changes (< 1 week)
+
+## Example prompts
+- "Implement React Server Components data fetching; use context7"
+- "Add Prisma database migrations; use context7"
+- "Configure Tailwind v4 dark mode; use context7"

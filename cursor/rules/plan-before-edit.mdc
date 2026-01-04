@@ -1,0 +1,20 @@
+---
+description: Enforce planning before major edits
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Plan Before Edit
+
+For non-trivial changes (>3 files or architectural impact):
+
+1. **Run /plan first** - Establish scope and get approval
+2. **Minimal change sets** - Prefer smaller, focused diffs
+3. **No surprise dependencies** - Pause and ask before adding new packages
+4. **Test coverage** - Plan includes test additions/updates
+
+## Exceptions (direct edit OK)
+- Typo fixes
+- Single-line bug fixes with clear cause
+- Documentation-only updates
+- User explicitly said "just do it"

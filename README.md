@@ -71,7 +71,8 @@ See [installer/README.md](installer/README.md) for full documentation.
 |--------|------------------|----------------------|--------|
 | **claude/** | `config/claude/settings.local.json` | Reference copy | 📋 Manual |
 | **claude-desktop/** | `config/claude-desktop/` | Reference copy | 📋 Manual |
-| **cursor/** | `config/cursor/` | `C:\Users\lance\.cursor\` | ⚠️ Empty |
+| **cursor/** | `config/cursor/commands/` | `C:\Users\lance\.cursor\commands\` | ✅ Slash Commands |
+| **cursor/** | `config/cursor/rules/` | `C:\Users\lance\.cursor\rules\` | ✅ Project Rules |
 | **vscode/** | `config/vscode/extensions.json` | Reference only | 📋 Manual |
 | **vscode-portable/** | `config/vscode-portable/` | Portable install location | ⚠️ Empty |
 | **workspaces/** | `config/workspaces/*.code-workspace` | VS Code workspace files | ✅ Active |
@@ -202,7 +203,10 @@ P:\dev\config\
 │   ├── settings.local.json   # Permission overrides
 │   └── .claude\              # Nested config structure
 ├── claude-desktop\           # Claude Desktop configs
-├── cursor\                   # Cursor IDE (empty - use chezmoi)
+├── cursor\                   # Cursor IDE slash commands & rules
+│   ├── README.md             # Installation guide
+│   ├── commands\             # 11 slash commands (/plan, /implement, etc.)
+│   └── rules\                # Project rules (.mdc files)
 ├── vscode\                   # VS Code settings
 │   └── extensions.json       # Extension list
 ├── vscode-portable\          # Portable VS Code location
