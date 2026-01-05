@@ -71,8 +71,10 @@ See [installer/README.md](installer/README.md) for full documentation.
 |--------|------------------|----------------------|--------|
 | **claude/** | `config/claude/settings.local.json` | Reference copy | 📋 Manual |
 | **claude-desktop/** | `config/claude-desktop/` | Reference copy | 📋 Manual |
+| **claude-code/** | `config/claude-code/commands/` | `C:\Users\lance\.claude\commands\` | ✅ Slash Commands |
 | **cursor/** | `config/cursor/commands/` | `C:\Users\lance\.cursor\commands\` | ✅ Slash Commands |
 | **cursor/** | `config/cursor/rules/` | `C:\Users\lance\.cursor\rules\` | ✅ Project Rules |
+| **continue/** | `config/continue/slash-commands.json` | `C:\Users\lance\.continue\config.json` | ✅ Slash Commands |
 | **vscode/** | `config/vscode/extensions.json` | Reference only | 📋 Manual |
 | **vscode-portable/** | `config/vscode-portable/` | Portable install location | ⚠️ Empty |
 | **workspaces/** | `config/workspaces/*.code-workspace` | VS Code workspace files | ✅ Active |
@@ -110,6 +112,61 @@ See [installer/README.md](installer/README.md) for full documentation.
 | Codex | `~/.codex/` |
 | Gemini CLI | `~/.gemini/` |
 | Zed | `~/.config/zed/` |
+
+---
+
+## Slash Commands (All Platforms)
+
+Portable slash commands for AI coding assistants. Same workflows, vendor-specific formats.
+
+### Platform Support Matrix
+
+| Platform | Slash Commands | Format | Location |
+|----------|---------------|--------|----------|
+| **Claude Code** | ✅ 10 commands | Markdown + YAML | `.claude/commands/` |
+| **Cursor** | ✅ 11 commands | Markdown | `.cursor/commands/` |
+| **Continue** | ✅ 6 commands | JSON | `.continue/config.json` |
+| **Claude Desktop** | ❌ None | N/A | Uses MCP only |
+| **VS Code Copilot** | ❌ Built-in only | N/A | N/A |
+| **Windsurf** | ❌ Not supported | N/A | N/A |
+| **Gemini CLI** | ❌ Not supported | N/A | N/A |
+
+### Available Commands
+
+| Command | Purpose | Edits Files? |
+|---------|---------|--------------|
+| `/plan` | Spec-first implementation plan | ❌ No |
+| `/implement` | Execute an approved plan | ✅ Yes |
+| `/debug` | Root-cause analysis + minimal fix | ✅ Yes |
+| `/review` | Deep code review | ❌ No |
+| `/test-gen` | Generate/upgrade tests | ✅ Yes |
+| `/update-docs` | Sync docs with code | ✅ Yes |
+| `/full-context` | Build repo mental model | ❌ No |
+| `/deep-review` | Pre-merge security/perf review | ❌ No |
+| `/pr-description` | Generate PR description | ❌ No |
+| `/research` | Deep research using MCP tools | ❌ No |
+
+### Installation
+
+```powershell
+# Claude Code
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\commands" -Target "P:\dev\config\claude-code\commands"
+
+# Cursor
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.cursor\commands" -Target "P:\dev\config\cursor\commands"
+
+# Continue (merge into config.json)
+# See continue/README.md for instructions
+```
+
+### MCP Integration
+
+Commands can invoke MCP tools by including phrases like `use context7` in the prompt. The AI interprets this and calls the appropriate MCP server.
+
+See individual platform READMEs for details:
+- [Claude Code Commands](claude-code/README.md)
+- [Cursor Commands](cursor/README.md)
+- [Continue Commands](continue/README.md)
 
 ---
 
@@ -202,7 +259,13 @@ P:\dev\config\
 │   ├── CLAUDE.md             # Project instructions
 │   ├── settings.local.json   # Permission overrides
 │   └── .claude\              # Nested config structure
+├── claude-code\               # Claude Code CLI slash commands
+│   ├── README.md             # Installation guide
+│   └── commands\             # 10 slash commands (/plan, /implement, etc.)
 ├── claude-desktop\           # Claude Desktop configs
+├── continue\                 # Continue extension commands
+│   ├── README.md             # Installation guide
+│   └── slash-commands.json   # Commands for config.json
 ├── cursor\                   # Cursor IDE slash commands & rules
 │   ├── README.md             # Installation guide
 │   ├── commands\             # 11 slash commands (/plan, /implement, etc.)

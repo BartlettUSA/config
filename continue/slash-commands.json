@@ -1,0 +1,36 @@
+{
+  "$schema": "https://continue.dev/schemas/config.json",
+  "description": "Continue extension slash commands - merge into ~/.continue/config.json",
+  "slashCommands": [
+    {
+      "name": "plan",
+      "description": "Spec-first implementation plan (no edits)",
+      "prompt": "You are running the /plan workflow.\n\n## Hard constraints\n- Do NOT edit files.\n- If requirements are ambiguous, ask exactly 1 clarifying question.\n- Optimize for minimal change set and lowest risk.\n\n## Process\n1. Restate the task in one sentence.\n2. Identify relevant files/modules and why.\n3. Produce an implementation plan with discrete steps.\n4. List files to change with what changes in each.\n5. Identify risks/edge cases.\n6. Define acceptance criteria.\n\n## Output format\n### Summary\n### Assumptions\n### Plan (numbered)\n### Files to change\n### Tests to add/update\n### Risks\n### Acceptance criteria\n\nTask: {{{ input }}}"
+    },
+    {
+      "name": "implement",
+      "description": "Execute an approved plan (make edits)",
+      "prompt": "You are running the /implement workflow.\n\n## Hard constraints\n- Only edit files in the plan's file list.\n- Keep changes minimal and consistent with existing patterns.\n- If you need new dependencies, pause and ask.\n\n## Process\n1. Locate files from the plan.\n2. Apply changes in small diffs.\n3. Update types, error handling, logging.\n4. Ensure code compiles/tests pass.\n5. Summarize what changed.\n\n## Output format\n### Summary\n### Files changed\n### Notes (tradeoffs)\n### How to test\n\nTask: {{{ input }}}"
+    },
+    {
+      "name": "debug",
+      "description": "Root-cause analysis + minimal fix",
+      "prompt": "You are running the /debug workflow.\n\n## Hard constraints\n- Do not propose broad refactors.\n- Prefer the smallest fix that addresses root cause.\n- Add tests to prevent regression.\n\n## Process\n1. Classify failure type (test, runtime, build, CI).\n2. Identify failing component and call path.\n3. Reconstruct root cause from code.\n4. Propose 1-2 minimal fixes.\n5. Implement fix and add tests.\n\n## Output format\n### Summary\n### Root cause\n### Fix\n### Tests added\n### How to verify\n\nSymptom: {{{ input }}}"
+    },
+    {
+      "name": "review",
+      "description": "Deep code review",
+      "prompt": "You are running the /review workflow.\n\n## Review dimensions\n- Correctness and edge cases\n- API/contract integrity\n- Error handling\n- Security and data handling\n- Performance\n- Maintainability\n- Test coverage\n\n## Output format\n### Summary\n### Must-fix (with file/line)\n### Should-fix\n### Nice-to-have\n### Test gaps\n\nCode to review: {{{ input }}}"
+    },
+    {
+      "name": "test-gen",
+      "description": "Generate tests for changes",
+      "prompt": "You are running the /test-gen workflow.\n\n## Hard constraints\n- Match repo's existing test framework and patterns.\n- Prefer deterministic tests.\n- Cover: success, failure, boundaries.\n\n## Process\n1. Identify changed behaviors.\n2. Add/extend tests.\n3. Ensure tests are readable and minimal.\n\n## Output format\n### Summary\n### Tests added (files + coverage)\n### How to run\n### Gaps\n\nCode to test: {{{ input }}}"
+    },
+    {
+      "name": "docs",
+      "description": "Sync docs with code",
+      "prompt": "You are running the /docs workflow.\n\n## Hard constraints\n- Only update stale or incomplete docs.\n- Keep docs concise and aligned with interfaces.\n\n## Targets\n- README\n- API docs / inline comments\n- Examples\n\n## Output format\n### Summary\n### Docs updated\n### Remaining doc debt\n\nChanges to document: {{{ input }}}"
+    }
+  ]
+}
