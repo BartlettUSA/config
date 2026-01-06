@@ -29,5 +29,5 @@ infisical secrets set KEY "value" --path=/mcp   # Add secret
 ## Related Repos
 
 - **Dotfiles:** `P:/dev/_dotfiles/START-HERE.md`
-- **Templates:** `P:/dev/templates/`
+- **Templates:** `P:/dev/repos/Templates/`
 - **IDCP:** `P:/dev/repos/IDCP/CLAUDE.md` (full project example)

@@ -123,7 +123,7 @@ Portable slash commands for AI coding assistants. Same workflows, vendor-specifi
 
 | Platform | Slash Commands | Format | Location |
 |----------|---------------|--------|----------|
-| **Claude Code** | ✅ 37 commands | Markdown + YAML | `.claude/commands/` |
+| **Claude Code** | ✅ 38 commands | Markdown + YAML | `.claude/commands/` |
 | **Cursor** | ✅ 38 commands | Markdown | `.cursor/commands/` |
 | **Continue** | ✅ 30 commands | JSON | `.continue/config.json` |
 | **Claude Desktop** | ❌ None | N/A | Uses MCP only |
@@ -265,7 +265,7 @@ P:\dev\config\
 │   └── .claude\              # Nested config structure
 ├── claude-code\               # Claude Code CLI slash commands
 │   ├── README.md             # Installation guide
-│   └── commands\             # 37 slash commands (/plan, /implement, etc.)
+│   └── commands\             # 38 slash commands (/plan, /implement, etc.)
 ├── claude-desktop\           # Claude Desktop configs
 ├── continue\                 # Continue extension commands
 │   ├── README.md             # Installation guide
