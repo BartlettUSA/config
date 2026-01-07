@@ -1,0 +1,12 @@
+# Code Owners - Auto-assign reviews
+* @BartlettUSA
+
+# Documentation
+*.md @BartlettUSA
+docs/ @BartlettUSA
+
+# Agent configs
+AGENTS.md @BartlettUSA
+CLAUDE.md @BartlettUSA
+GEMINI.md @BartlettUSA
+
