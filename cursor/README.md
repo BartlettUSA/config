@@ -8,17 +8,17 @@ Portable Cursor slash commands and rules for cross-project consistency.
 
 ```powershell
 # Option 1: Symlink (recommended - stays in sync)
-New-Item -ItemType SymbolicLink -Path ".cursor\commands" -Target "P:\dev\config\cursor\commands"
-New-Item -ItemType SymbolicLink -Path ".cursor\rules" -Target "P:\dev\config\cursor\rules"
+New-Item -ItemType SymbolicLink -Path ".cursor\commands" -Target "P:\dev\repos\Config\cursor\commands"
+New-Item -ItemType SymbolicLink -Path ".cursor\rules" -Target "P:\dev\repos\Config\cursor\rules"
 
 # Option 2: Copy (one-time)
-Copy-Item -Recurse "P:\dev\config\cursor\commands" ".cursor\"
-Copy-Item -Recurse "P:\dev\config\cursor\rules" ".cursor\"
+Copy-Item -Recurse "P:\dev\repos\Config\cursor\commands" ".cursor\"
+Copy-Item -Recurse "P:\dev\repos\Config\cursor\rules" ".cursor\"
 ```
 
 Or for user-level (all projects):
 ```powershell
-Copy-Item -Recurse "P:\dev\config\cursor\commands" "$env:USERPROFILE\.cursor\"
+Copy-Item -Recurse "P:\dev\repos\Config\cursor\commands" "$env:USERPROFILE\.cursor\"
 ```
 
 ## Commands
@@ -124,5 +124,5 @@ User Request
 
 ## Related
 
-- [MCP Server Matrix](../../_dotfiles/MCP-SERVER-MATRIX.md) - Full MCP inventory
-- [Cursor MCP Config](../../_dotfiles/dot_cursor/mcp.json.tmpl) - Chezmoi template
+- [MCP Server Matrix](../../Dotfiles/MCP-SERVER-MATRIX.md) - Full MCP inventory
+- [Cursor MCP Config](../../Dotfiles/dot_cursor/mcp.json.tmpl) - Chezmoi template

@@ -15,7 +15,7 @@ Merge commands into your Continue config:
 
 Or copy the entire file:
 ```powershell
-Copy-Item "P:\dev\config\continue\slash-commands.json" "$env:USERPROFILE\.continue\config.json"
+Copy-Item "P:\dev\repos\Config\continue\slash-commands.json" "$env:USERPROFILE\.continue\config.json"
 ```
 
 ## Commands

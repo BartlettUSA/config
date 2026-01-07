@@ -1,7 +1,7 @@
 # Config Directory
 
 **Purpose:** Portable IDE and tool configurations for cross-machine consistency.
-**Parent:** [P:\dev](../README.md) | **Managed By:** Manual + Chezmoi hybrid
+**Parent:** [P:\dev\repos](../README.md) | **Managed By:** Manual + Chezmoi hybrid
 
 ---
 
@@ -46,7 +46,7 @@ See [installer/README.md](installer/README.md) for full documentation.
 
 ## Symlink Table
 
-### Chezmoi-Managed (Source of Truth: `P:\dev\_dotfiles`)
+### Chezmoi-Managed (Source of Truth: `P:\dev\repos\Dotfiles`)
 
 | Platform | Source (dotfiles) | Target (User Profile) | Status |
 |----------|-------------------|----------------------|--------|
@@ -65,7 +65,7 @@ See [installer/README.md](installer/README.md) for full documentation.
 | **Zed** | `dot_config/zed/settings.json.tmpl` | `C:\Users\lance\.config\zed\settings.json` | ✅ Chezmoi |
 | **Claude Desktop** | `AppData/Roaming/Claude/claude_desktop_config.json.tmpl` | `C:\Users\lance\AppData\Roaming\Claude\claude_desktop_config.json` | ✅ Chezmoi |
 
-### Manual Configs (Source: `P:\dev\config`)
+### Manual Configs (Source: `P:\dev\repos\Config`)
 
 | Folder | Source (config/) | Target (User Profile) | Status |
 |--------|------------------|----------------------|--------|
@@ -250,7 +250,7 @@ infisical secrets set NEW_KEY "value" --path=/mcp
 ## Directory Structure
 
 ```
-P:\dev\config\
+P:\dev\repos\Config\
 ├── README.md                  # This file
 ├── installer\                 # ⭐ Path-agnostic installer package
 │   ├── install.ps1           # Windows installer
@@ -288,13 +288,13 @@ P:\dev\config\
 
 ## Setup Script
 
-Create `P:\dev\config\scripts\setup-symlinks.ps1`:
+Create `P:\dev\repos\Config\scripts\setup-symlinks.ps1`:
 
 ```powershell
 #Requires -RunAsAdministrator
 # Setup symlinks for configs that need specific locations
 
-$configRoot = "P:\dev\config"
+$configRoot = "P:\dev\repos\Config"
 $userProfile = $env:USERPROFILE
 
 # Define symlink mappings (source -> target)
@@ -340,7 +340,7 @@ Write-Host "`nDone. Run 'chezmoi apply --force' for managed configs."
 
 > ⚠️ **Never commit API keys or secrets to version control**
 
-- Secrets are managed via Infisical (see `_dotfiles/.infisical.json`)
+- Secrets are managed via Infisical (see `../Dotfiles/.infisical.json`)
 - Templates use `{{ secret ... }}` syntax for dynamic injection
 - Docker MCP uses its own credential store: `docker mcp secret set`
 - Personal overrides go in `settings.local.json` (not tracked)
@@ -349,6 +349,6 @@ Write-Host "`nDone. Run 'chezmoi apply --force' for managed configs."
 
 ## Related
 
-- [P:\dev\_dotfiles\DOTFILES-SPEC.md](../_dotfiles/DOTFILES-SPEC.md) — Full specification
-- [P:\dev\_dotfiles\MCP-SERVER-MATRIX.md](../_dotfiles/MCP-SERVER-MATRIX.md) — All 27 MCP capabilities
-- [P:\dev\_dotfiles\START-HERE.md](../_dotfiles/START-HERE.md) — 5-minute setup guide
+- [P:\dev\repos\Dotfiles\DOTFILES-SPEC.md](../Dotfiles/DOTFILES-SPEC.md) — Full specification
+- [P:\dev\repos\Dotfiles\MCP-SERVER-MATRIX.md](../Dotfiles/MCP-SERVER-MATRIX.md) — All 27 MCP capabilities
+- [P:\dev\repos\Dotfiles\START-HERE.md](../Dotfiles/START-HERE.md) — 5-minute setup guide
