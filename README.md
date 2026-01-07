@@ -154,10 +154,10 @@ Portable slash commands for AI coding assistants. Same workflows, vendor-specifi
 
 ```powershell
 # Claude Code
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\commands" -Target "P:\dev\config\claude-code\commands"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.claude\commands" -Target "P:\dev\repos\Config\claude-code\commands"
 
 # Cursor
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.cursor\commands" -Target "P:\dev\config\cursor\commands"
+New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.cursor\commands" -Target "P:\dev\repos\Config\cursor\commands"
 
 # Continue (merge into config.json)
 # See continue/README.md for instructions

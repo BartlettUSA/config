@@ -2,13 +2,13 @@
 
 **Audit Date**: 2026-01-06  
 **Status**: ✅ Complete  
-**Direction**: C:\Users\lance (canonical runtime) → P:\dev\config (portable templates)
+**Direction**: C:\Users\lance (canonical runtime) → P:\dev\repos\Config (portable templates)
 
 ---
 
 ## Executive Summary
 
-**Finding**: `P:\dev\config` and `C:\Users\lance` are **NOT in sync**. All evaluated config pairs show hash differences.
+**Finding**: `P:\dev\repos\Config` and `C:\Users\lance` are **NOT in sync**. All evaluated config pairs show hash differences.
 
 **Root Cause**:
 1. **Schema drift**: Templates use outdated schemas (Claude Code `allow/deny` vs runtime `allowedTools/deniedTools`, Zed `mcpServers` vs `context_servers`)
@@ -16,13 +16,13 @@
 3. **Template gaps**: 2 runtime files have no corresponding templates (`cursor-cli-config`, `gemini-instructions`)
 4. **Deployment approach**: Your working configs use Infisical + hardcoded paths; templates use placeholders
 
-**Recommendation**: Update P:\dev\config templates to match runtime structure while preserving portability via placeholders.
+**Recommendation**: Update P:\dev\repos\Config templates to match runtime structure while preserving portability via placeholders.
 
 ---
 
 ## Deliverables Created
 
-All reports saved to `P:\dev\config\`:
+All reports saved to `P:\dev\repos\Config\`:
 
 | File | Purpose |
 |------|---------|
@@ -116,7 +116,7 @@ Runtime includes these servers not in templates:
 ## Next Steps
 
 ### Immediate (Safe to Execute)
-1. Review all generated reports in `P:\dev\config\`
+1. Review all generated reports in `P:\dev\repos\Config\`
 2. Follow `merge-procedure.md` Phase 1 (git snapshot)
 3. Execute Phase 2 (fill template gaps: cursor-cli-config, gemini-instructions)
 
@@ -170,7 +170,7 @@ claude-settings:
 
 The audit is complete with zero C-drive modifications. All runtime configs remain functional and protected. 
 
-**`P:\dev\config` is now fully documented** with:
+**`P:\dev\repos\Config` is now fully documented** with:
 - Exact state capture (manifest with SHA256 hashes)
 - Semantic difference analysis
 - Path mapping reference

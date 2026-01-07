@@ -1,9 +1,9 @@
-# Safe Merge Procedure: C:\Users\lance → P:\dev\config
+# Safe Merge Procedure: C:\Users\lance → P:\dev\repos\Config
 
 Generated: 2026-01-06
 
 ## Overview
-This procedure updates P:\dev\config templates to match the working C:\Users\lance runtime configs.
+This procedure updates P:\dev\repos\Config templates to match the working C:\Users\lance runtime configs.
 
 **Direction**: C-drive (source of truth) → P-drive (portable templates)  
 **Safety**: No C-drive files will be modified  
@@ -16,16 +16,16 @@ This procedure updates P:\dev\config templates to match the working C:\Users\lan
 ### 1. Verify Current State
 ```powershell
 # Confirm manifest exists and is recent
-Get-Item P:\dev\config\config-manifest.json
+Get-Item P:\dev\repos\Config\config-manifest.json
 
 # Review the recommendations
-Get-Content P:\dev\config\update-recommendations.md | more
+Get-Content P:\dev\repos\Config\update-recommendations.md | more
 ```
 
 ### 2. Create Safety Snapshot
 ```powershell
-# Navigate to P:\dev\config
-cd P:\dev\config
+# Navigate to P:\dev\repos\Config
+cd P:\dev\repos\Config
 
 # Verify Git status
 git status
@@ -53,26 +53,26 @@ git checkout -b "sync-runtime-configs-$(Get-Date -Format 'yyyyMMdd')"
 # Copy from runtime to template location
 Copy-Item `
   -LiteralPath "$env:USERPROFILE\.cursor\cli-config.json" `
-  -Destination "P:\dev\config\installer\templates\cursor\cli-config.json" `
+  -Destination "P:\dev\repos\Config\installer\templates\cursor\cli-config.json" `
   -Force
 
 # Verify
-Get-FileHash -Algorithm SHA256 "P:\dev\config\installer\templates\cursor\cli-config.json"
+Get-FileHash -Algorithm SHA256 "P:\dev\repos\Config\installer\templates\cursor\cli-config.json"
 ```
 
 ### 1.2 Add Gemini Instructions
 ```powershell
 # Create directory if needed
-New-Item -ItemType Directory -Force -Path "P:\dev\config\installer\templates\gemini"
+New-Item -ItemType Directory -Force -Path "P:\dev\repos\Config\installer\templates\gemini"
 
 # Copy from runtime
 Copy-Item `
   -LiteralPath "$env:USERPROFILE\.gemini\instructions.md" `
-  -Destination "P:\dev\config\installer\templates\gemini\instructions.md" `
+  -Destination "P:\dev\repos\Config\installer\templates\gemini\instructions.md" `
   -Force
 
 # Verify
-Get-FileHash -Algorithm SHA256 "P:\dev\config\installer\templates\gemini\instructions.md"
+Get-FileHash -Algorithm SHA256 "P:\dev\repos\Config\installer\templates\gemini\instructions.md"
 ```
 
 ---
@@ -82,12 +82,12 @@ Get-FileHash -Algorithm SHA256 "P:\dev\config\installer\templates\gemini\instruc
 ### 2.1 Backup Current Templates
 ```powershell
 # Create backup directory
-$backupDir = "P:\dev\config\installer\templates-backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
+$backupDir = "P:\dev\repos\Config\installer\templates-backup-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 New-Item -ItemType Directory -Force -Path $backupDir
 
 # Backup all current templates
 Copy-Item -Recurse `
-  "P:\dev\config\installer\templates\*" `
+  "P:\dev\repos\Config\installer\templates\*" `
   $backupDir
 
 Write-Host "Templates backed up to: $backupDir"
@@ -97,7 +97,7 @@ Write-Host "Templates backed up to: $backupDir"
 
 For each template file identified in update-recommendations.md:
 1. Open runtime file (C:\Users\lance\...)
-2. Open template file (P:\dev\config\installer\templates\...)
+2. Open template file (P:\dev\repos\Config\installer\templates\...)
 3. Copy structure/content from runtime
 4. Replace machine-specific values with placeholders:
    - Replace `"C:\\Users\\lance\\AppData\\Local"` → `"{{ENV:LOCALAPPDATA}}"`
@@ -117,7 +117,7 @@ For each template file identified in update-recommendations.md:
 ### 3.1 Re-run Manifest
 ```powershell
 # Navigate to config directory
-cd P:\dev\config
+cd P:\dev\repos\Config
 
 # Re-generate manifest to see new matches
 # (Use the manifest generation script from earlier)
@@ -126,7 +126,7 @@ cd P:\dev\config
 ### 3.2 Validate Template Syntax
 ```powershell
 # Test JSON validity for all JSON templates
-Get-ChildItem -Recurse -Filter "*.json" "P:\dev\config\installer\templates" | ForEach-Object {
+Get-ChildItem -Recurse -Filter "*.json" "P:\dev\repos\Config\installer\templates" | ForEach-Object {
   try {
     $content = Get-Content -Raw -LiteralPath $_.FullName | ConvertFrom-Json
     Write-Host "✓ Valid JSON: $($_.Name)" -ForegroundColor Green
@@ -140,7 +140,7 @@ Get-ChildItem -Recurse -Filter "*.json" "P:\dev\config\installer\templates" | Fo
 ### 3.3 Verify Placeholder Patterns
 ```powershell
 # Check that no hardcoded paths remain
-Get-ChildItem -Recurse -Filter "*.json" "P:\dev\config\installer\templates" | ForEach-Object {
+Get-ChildItem -Recurse -Filter "*.json" "P:\dev\repos\Config\installer\templates" | ForEach-Object {
   $content = Get-Content -Raw -LiteralPath $_.FullName
   if ($content -match 'C:\\Users\\lance') {
     Write-Host "⚠ Hardcoded user path in: $($_.Name)" -ForegroundColor Yellow
@@ -156,17 +156,17 @@ Get-ChildItem -Recurse -Filter "*.json" "P:\dev\config\installer\templates" | Fo
 ## Phase 4: Documentation Updates
 
 ### 4.1 Update installer/config.json
-Edit `P:\dev\config\installer\config.json` to add entries for:
+Edit `P:\dev\repos\Config\installer\config.json` to add entries for:
 - cursor-cli-config
 - gemini-instructions
 
 ### 4.2 Update README Files
-Update `P:\dev\config\README.md`:
+Update `P:\dev\repos\Config\README.md`:
 - Reference manifest/diff/mapping reports
 - Update migration status table
 - Note schema alignment status
 
-Update `P:\dev\config\installer\README.md`:
+Update `P:\dev\repos\Config\installer\README.md`:
 - Document placeholder patterns
 - Add schema compatibility notes
 
@@ -176,7 +176,7 @@ Update `P:\dev\config\installer\README.md`:
 
 ### 5.1 Review All Changes
 ```powershell
-cd P:\dev\config
+cd P:\dev\repos\Config
 git status
 git diff
 ```
@@ -203,7 +203,7 @@ If issues are discovered:
 
 ### Quick Rollback (Git)
 ```powershell
-cd P:\dev\config
+cd P:\dev\repos\Config
 git checkout main
 git branch -D sync-runtime-configs-YYYYMMDD
 ```
@@ -211,9 +211,9 @@ git branch -D sync-runtime-configs-YYYYMMDD
 ### Full Restore from Backup
 ```powershell
 # Restore templates from backup
-$backupDir = "P:\dev\config\installer\templates-backup-YYYYMMDD-HHMMSS"
-Remove-Item -Recurse -Force "P:\dev\config\installer\templates"
-Copy-Item -Recurse $backupDir "P:\dev\config\installer\templates"
+$backupDir = "P:\dev\repos\Config\installer\templates-backup-YYYYMMDD-HHMMSS"
+Remove-Item -Recurse -Force "P:\dev\repos\Config\installer\templates"
+Copy-Item -Recurse $backupDir "P:\dev\repos\Config\installer\templates"
 ```
 
 ---

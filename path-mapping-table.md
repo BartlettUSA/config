@@ -86,17 +86,17 @@ This table maps `P:\dev\repos\Config` files to their corresponding runtime locat
 1. **Cursor slash commands**
    - Source: `P:\dev\repos\Config\cursor\commands\` (38 commands)
    - Target: `C:\Users\lance\.cursor\commands\` (currently missing)
-   - Action: Deploy via symlink or copy
+   - Options: Add to Chezmoi, include in installer, or use per-project
 
 2. **Cursor project rules**
    - Source: `P:\dev\repos\Config\cursor\rules\` (2 rules)
    - Target: `C:\Users\lance\.cursor\rules\` (currently missing)
-   - Action: Deploy via symlink or copy
+   - Options: Add to Chezmoi, include in installer, or use per-project
 
 3. **Claude Code slash commands**
    - Source: `P:\dev\repos\Config\claude-code\commands\` (38 commands)
    - Target: `C:\Users\lance\.claude\commands\` (status unknown)
-   - Action: Verify if deployed, deploy if missing
+   - Options: Verify if deployed via Chezmoi, deploy if missing
 
 ### Missing Templates (Runtime exists, no installer template)
 
@@ -145,49 +145,31 @@ This table maps `P:\dev\repos\Config` files to their corresponding runtime locat
 
 ---
 
-## Deployment Strategy by Category
+## Deployment Options (Reference)
 
-### For Portable Configs
-**Recommendation**: Deploy directly from Config repo
+This section documents available deployment methods. Choose based on your workflow.
 
-```powershell
-# Slash commands
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.cursor\commands" -Target "P:\dev\repos\Config\cursor\commands"
+### Option A: Chezmoi (Recommended for consistency)
+Add portable files to Dotfiles repo as non-templated copies. Deployed alongside machine-specific configs via `chezmoi apply`.
 
-# Project rules
-New-Item -ItemType SymbolicLink -Path "$env:USERPROFILE\.cursor\rules" -Target "P:\dev\repos\Config\cursor\rules"
-```
+### Option B: Installer Script
+Include portable payloads in `P:\dev\repos\Config\installer\install.ps1`. Copies files during initial setup.
 
-### For Machine-Specific Configs
-**Recommendation**: Managed via Dotfiles/Chezmoi, NOT Config/installer
+### Option C: Reference Only
+Don't deploy globally. Open files directly from Config repo when needed, or use per-project `.cursor/` folders.
 
-```powershell
-# Check what would change
-chezmoi diff
-
-# Apply Chezmoi-managed configs
-chezmoi apply --force
-
-# Verify deployment
-chezmoi managed
-```
-
-### For Vendor-Managed Content
-**Recommendation**: Do not manage, let platform handle
+### Option D: Per-Project
+Cursor and Claude Code both support project-level commands/rules. Place in each project's `.cursor/` or `.claude/` folder.
 
 ---
 
-## Cross-References to Update
+### Summary by Category
 
-Files in `P:\dev\repos\Config` that reference old paths:
-
-1. `README.md` - References `P:\dev\config`, should be `P:\dev\repos\Config`
-2. `claude-code/README.md` - References `P:\dev\config`, should be `P:\dev\repos\Config`
-3. `cursor/README.md` - References `P:\dev\config`, should be `P:\dev\repos\Config`
-4. `continue/README.md` - References `P:\dev\config`, should be `P:\dev\repos\Config`
-
-Files that reference Dotfiles location:
-- Most references in Config README correctly point to `P:\dev\repos\Dotfiles` (already updated)
+| Category | Deployment Method |
+|----------|-------------------|
+| **Portable** | Choose Option A-D above |
+| **Machine-Specific** | Dotfiles/Chezmoi (Tier 2 → Tier 3) |
+| **Vendor-Managed** | Do not manage; let platform handle |
 
 ---
 
