@@ -8,7 +8,7 @@
 
 **Gordon's config is separate from the Docker MCP Gateway.**
 
-- Gateway: 16 servers for all AI platforms (`~/.docker/mcp/registry.yaml`)
+- Gateway: 35 servers for all AI platforms (`~/.docker/mcp/registry.yaml`)
 - Gordon: Limited to 4 servers (50 tool max)
 - Secrets: Managed via [Infisical](https://app.infisical.com)
 
