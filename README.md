@@ -123,7 +123,7 @@ Portable slash commands for AI coding assistants. Same workflows, vendor-specifi
 
 | Platform | Slash Commands | Format | Location |
 |----------|---------------|--------|----------|
-| **Claude Code** | ✅ 38 commands | Markdown + YAML | `.claude/commands/` |
+| **Claude Code** | ✅ 41 commands | Markdown + YAML | `.claude/commands/` |
 | **Cursor** | ✅ 38 commands | Markdown | `.cursor/commands/` |
 | **Continue** | ✅ 30 commands | JSON | `.continue/config.json` |
 | **Claude Desktop** | ❌ None | N/A | Uses MCP only |
@@ -149,6 +149,9 @@ Portable slash commands for AI coding assistants. Same workflows, vendor-specifi
 | `/deep-review` | Pre-merge security/perf review | ❌ No |
 | `/pr-description` | Generate PR description | ❌ No |
 | `/research` | Deep research using MCP tools | ❌ No |
+| `/utils-list` | List all utilities in Utilities repo | ❌ No |
+| `/utils-search` | Search utilities by keyword | ❌ No |
+| `/utils-check` | Check if utility exists before creating | ❌ No |
 
 ### Installation
 
@@ -265,14 +268,14 @@ P:\dev\repos\Config\
 │   └── .claude\              # Nested config structure
 ├── claude-code\               # Claude Code CLI slash commands
 │   ├── README.md             # Installation guide
-│   └── commands\             # 38 slash commands (/plan, /implement, etc.)
+│   └── commands\             # 41 slash commands (/plan, /implement, etc.)
 ├── claude-desktop\           # Claude Desktop configs
 ├── continue\                 # Continue extension commands
 │   ├── README.md             # Installation guide
 │   └── slash-commands.json   # Commands for config.json
 ├── cursor\                   # Cursor IDE slash commands & rules
 │   ├── README.md             # Installation guide
-│   ├── commands\             # 38 slash commands (/plan, /implement, etc.)
+│   ├── commands\             # 41 slash commands (/plan, /implement, etc.)
 │   └── rules\                # Project rules (.mdc files)
 ├── vscode\                   # VS Code settings
 │   └── extensions.json       # Extension list
