@@ -1,13 +1,58 @@
 {
 	"folders": [
 		{
-			"path": "../../repos/IDCP"
+			"path": "../repos/IDCP"
 		},
 		{
-			"path": "../../_templates"
+			"path": "../templates"
 		},
 		{
-			"path": "../../_dotfiles"
+			"path": "../_dotfiles"
+		},
+		{
+			"path": "../repos/Config"
+		},
+		{
+			"path": "../repos/Dotfiles"
+		},
+		{
+			"path": "../repos/IDCP-Agent-Orchestrator"
+		},
+		{
+			"path": "../repos/IDCP-Eval-Center"
+		},
+		{
+			"path": "../repos/IDCP-Fine-Tuning"
+		},
+		{
+			"path": "../repos/IDCP-Flow-Trace"
+		},
+		{
+			"path": "../repos/IDCP-Hub"
+		},
+		{
+			"path": "../repos/IDCP-MCP-Skills"
+		},
+		{
+			"path": "../repos/IDCP-MCP-Tools"
+		},
+		{
+			"path": "../repos/IDCP-Observability"
+		},
+		{
+			"path": "../repos/IDCP-Prompt-Lab"
+		},
+		{
+			"path": "../repos/IDCP-RAG-Manager"
+		},
+		{
+			"path": "../repos/MPC-Server"
+		},
+		{
+			"path": "../repos/Packages"
+		},
+		{
+			"path": "../repos/Templates"
 		}
 	],
 	"settings": {
